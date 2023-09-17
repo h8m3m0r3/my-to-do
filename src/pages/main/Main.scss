@@ -1,0 +1,79 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+  height: min-content;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(231, 231, 231, 1) 45%
+  );
+}
+
+.title {
+  font-family: Raleway;
+  font-size: 72px;
+  font-weight: 100;
+  color: #e0c4c4;
+}
+
+.content {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  width: 570px;
+}
+
+.input {
+  font-family: Raleway;
+  font-style: italic;
+  font-size: 20px;
+  padding: 10px 10px;
+  border: none;
+  color: black;
+  border-bottom: 0.5px solid rgb(189, 189, 189);
+}
+
+.content__down {
+  height: 40px;
+  padding-inline: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-top: 0.5px solid rgb(189, 189, 189);
+}
+
+.filter__left,
+.filter__delete {
+  font-family: Raleway;
+  font-weight: 200;
+}
+
+.filter__sort {
+  cursor: pointer;
+  > button {
+    margin-inline: 5px;
+    font-family: Raleway;
+    border: none;
+    background: none;
+    font-weight: 200;
+  }
+}
+.filter__sort > button:disabled {
+  padding: 2px 3px 2px 3px;
+  border-radius: 5px;
+  border: 1px solid #e0c4c4;
+}
+
+.filter__delete {
+  cursor: pointer;
+  border: none;
+  background: none;
+}

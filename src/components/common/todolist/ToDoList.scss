@@ -1,0 +1,62 @@
+.listItem {
+  height: 520px;
+  max-height: 520px;
+  overflow: auto;
+}
+.toDoListItem {
+  display: flex;
+  align-items: center;
+  border-bottom: 0.5px solid rgb(189, 189, 189);
+  width: 570px;
+  height: 60px;
+
+  p {
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 24px;
+  }
+}
+
+.toDoListItemCompleted {
+  display: flex;
+  align-items: center;
+  border-bottom: 0.5px solid rgb(189, 189, 189);
+  width: 570px;
+  height: 60px;
+  color: rgb(153, 153, 153);
+  text-decoration: line-through;
+
+  p {
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 24px;
+  }
+}
+
+.completeTaskButton {
+  opacity: 10%;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  margin: 10px 15px 10px 5px;
+  border: 0.1px solid rgb(109, 109, 109);
+  border-radius: 20px;
+}
+
+.completeTaskButton:hover {
+  opacity: 100%;
+}
+
+.completedTaskButton {
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  margin: 10px 20px 10px 5px;
+  border: 0.1px solid rgb(47, 133, 51);
+  border-radius: 20px;
+  color: rgb(47, 133, 51);
+}
+
+.deleteTaskButton {
+  display: none;
+}
