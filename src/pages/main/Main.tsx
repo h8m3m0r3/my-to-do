@@ -1,8 +1,9 @@
 import React from "react";
 import { QRCode, Space } from "antd";
-import "./Main.scss";
 import { useToDoList } from "hooks";
 import { FilterPanel, ToDoList } from "components";
+
+import "./Main.scss";
 
 const Main = () => {
   const {

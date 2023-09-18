@@ -1,12 +1,11 @@
-import { useTypeDispatch } from "hooks/usetypedispatch/useTypeDispatch";
 import { useState } from "react";
+import { useTypeDispatch } from "hooks";
 import {
   addTask,
   removeCompletedTask,
   removeTask,
   сompleteTask,
 } from "store/reducers/toDoListReducer";
-import { ToDoListType } from "types";
 
 interface IUseToDoList {
   inputValue: string;
@@ -24,6 +23,7 @@ interface IUseToDoList {
 const useToDoList = (): IUseToDoList => {
   const [inputValue, setInputValue] = useState("");
   const [listFilter, setListFilter] = useState("all");
+
   const dispatch = useTypeDispatch();
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,19 +39,19 @@ const useToDoList = (): IUseToDoList => {
       }
     }
   };
-  // Удаление таска
+
   const handleDeleteTask = (id: number) => {
     dispatch(removeTask(id));
   };
-  // Завершение таска
+
   const handleCompleteTask = (id: number) => {
     dispatch(сompleteTask(id));
   };
-  // Удаление всех
+
   const handleDeleteCompletedTask = () => {
     dispatch(removeCompletedTask());
   };
-  // Фильтр
+
   const handleChangeTaskFilter = (item: string) => {
     setListFilter(item);
   };
