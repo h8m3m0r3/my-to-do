@@ -10,7 +10,6 @@ const Main = () => {
     onChangeInputValue,
     handleEnterPress,
     listFilter,
-    toDoList,
     handleCompleteTask,
     handleDeleteTask,
     handleChangeTaskFilter,
@@ -31,12 +30,10 @@ const Main = () => {
         />
         <ToDoList
           listFilter={listFilter}
-          toDoList={toDoList}
           handleCompleteTask={handleCompleteTask}
           handleDeleteTask={handleDeleteTask}
         />
         <FilterPanel
-          toDoList={toDoList}
           handleChangeTaskFilter={handleChangeTaskFilter}
           listFilter={listFilter}
           handleDeleteCompletedTask={handleDeleteCompletedTask}

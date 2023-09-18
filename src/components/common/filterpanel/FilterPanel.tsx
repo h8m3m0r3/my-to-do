@@ -1,19 +1,19 @@
+import { useTypeSelector } from "hooks/usetypeselector/useTypeSelector";
 import React from "react";
 import { ToDoListType } from "types";
 
 interface IFilterPanel {
-  toDoList: ToDoListType[] | [];
   handleChangeTaskFilter: (item: string) => void;
   listFilter: string;
   handleDeleteCompletedTask: () => void;
 }
 
 const FilterPanel = ({
-  toDoList,
   handleChangeTaskFilter,
   listFilter,
   handleDeleteCompletedTask,
 }: IFilterPanel) => {
+  const toDoList = useTypeSelector(data => data.toDoListReducer)
   return (
     <div className="content__down">
       <div className="filter__left">

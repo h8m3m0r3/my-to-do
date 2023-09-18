@@ -1,20 +1,20 @@
 import React from 'react';
 import { CheckOutlined } from '@ant-design/icons';
 import "./ToDoList.scss"
-import { ToDoListType } from 'types';
+import { useTypeSelector } from 'hooks/usetypeselector/useTypeSelector';
 
 
 interface IToDoList {
     listFilter: string,
-    toDoList: ToDoListType[],
     handleCompleteTask: (number: number) => void,
     handleDeleteTask: (number: number) => void,
 }
 
-const ToDoList = ({listFilter, toDoList, handleCompleteTask, handleDeleteTask}:IToDoList ) => {
+const ToDoList = ({listFilter, handleCompleteTask, handleDeleteTask}:IToDoList ) => {
+    const toDoListStore = useTypeSelector(data => data.toDoListReducer)
     return (
         <div className="listItem">
-            {listFilter === "all" ? toDoList.map(item => {
+            {listFilter === "all" ? toDoListStore.map(item => {
                 return (
                     <div className={`${item.active ? 'toDoListItem' : 'toDoListItemCompleted'}`} key={item.id} >
                         {item.active ?
@@ -32,7 +32,7 @@ const ToDoList = ({listFilter, toDoList, handleCompleteTask, handleDeleteTask}:I
                     </div>
                 )
             }) : null}
-            {listFilter === "active" ? toDoList.filter(item => item.active).map(item => {
+            {listFilter === "active" ? toDoListStore.filter(item => item.active).map(item => {
                 return (
                     <div className='toDoListItem' key={item.id} >
                         <button onClick={() => handleCompleteTask(item.id)} className='completeTaskButton'>
@@ -45,7 +45,7 @@ const ToDoList = ({listFilter, toDoList, handleCompleteTask, handleDeleteTask}:I
                     </div>
                 )
             }) : null}
-            {listFilter === "completed" ? toDoList.filter(item => !item.active).map(item => {
+            {listFilter === "completed" ? toDoListStore.filter(item => !item.active).map(item => {
                 return (
                     <div className='toDoListItemCompleted' key={item.id} >
                         <button className='completedTaskButton'>

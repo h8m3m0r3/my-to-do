@@ -1,25 +1,30 @@
+import { useTypeDispatch } from "hooks/usetypedispatch/useTypeDispatch";
 import { useState } from "react";
+import {
+  addTask,
+  removeCompletedTask,
+  removeTask,
+  сompleteTask,
+} from "store/reducers/toDoListReducer";
 import { ToDoListType } from "types";
 
 interface IUseToDoList {
-    inputValue: string,
-    setInputValue: React.Dispatch<React.SetStateAction<string>>,
-    toDoList: ToDoListType[] | [],
-    setToDoList: React.Dispatch<React.SetStateAction<ToDoListType[] | []>>,
-    listFilter: string,
-    setListFilter: React.Dispatch<React.SetStateAction<string>>,
-    onChangeInputValue: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    handleEnterPress: (e: React.KeyboardEvent<HTMLInputElement>) => void,
-    handleDeleteTask: (id: number) => void,
-    handleCompleteTask: (id: number) => void,
-    handleDeleteCompletedTask: () => void,
-    handleChangeTaskFilter: (item: string) => void,
+  inputValue: string;
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  listFilter: string;
+  setListFilter: React.Dispatch<React.SetStateAction<string>>;
+  onChangeInputValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleEnterPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  handleDeleteTask: (id: number) => void;
+  handleCompleteTask: (id: number) => void;
+  handleDeleteCompletedTask: () => void;
+  handleChangeTaskFilter: (item: string) => void;
 }
 
-const useToDoList = ():IUseToDoList => {
+const useToDoList = (): IUseToDoList => {
   const [inputValue, setInputValue] = useState("");
-  const [toDoList, setToDoList] = useState<ToDoListType[] | []>([]);
   const [listFilter, setListFilter] = useState("all");
+  const dispatch = useTypeDispatch();
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -29,36 +34,30 @@ const useToDoList = ():IUseToDoList => {
       e.preventDefault();
       if (inputValue.trim() !== "") {
         const randomId = Math.floor(Math.random() * 10000);
-        setToDoList((prev) => [
-          ...prev,
-          { id: randomId, text: inputValue, active: true },
-        ]);
+        dispatch(addTask({ id: randomId, text: inputValue, active: true }));
         setInputValue("");
       }
     }
   };
+  // Удаление таска
   const handleDeleteTask = (id: number) => {
-    const updatedToDoList = toDoList.filter((item) => item.id !== id);
-    setToDoList(updatedToDoList);
+    dispatch(removeTask(id));
   };
+  // Завершение таска
   const handleCompleteTask = (id: number) => {
-    const updatedToDoList = toDoList.map((item) =>
-      item.id === id ? { ...item, active: false } : item
-    );
-    setToDoList(updatedToDoList);
+    dispatch(сompleteTask(id));
   };
+  // Удаление всех
   const handleDeleteCompletedTask = () => {
-    const updatedToDoList = toDoList.filter((item) => item.active);
-    setToDoList(updatedToDoList);
+    dispatch(removeCompletedTask());
   };
+  // Фильтр
   const handleChangeTaskFilter = (item: string) => {
     setListFilter(item);
   };
   return {
     inputValue,
     setInputValue,
-    toDoList,
-    setToDoList,
     listFilter,
     setListFilter,
     onChangeInputValue,
